@@ -1,1 +1,1 @@
-pdflatex -output-directory=out latex-first.tex
+pdflatex -output-directory=out main.tex
