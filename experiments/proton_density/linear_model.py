@@ -63,7 +63,7 @@ if image.ndim == 2:
             "value_at_center": value_at_center
             }
 
-    with open("./data/linear_params.json", "w") as f:
+    with open(env.linear_params_path, "w") as f:
         json.dump(params, f)
     
     # Calculate R² score
