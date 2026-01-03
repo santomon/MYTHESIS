@@ -56,8 +56,6 @@ if image.ndim == 2:
 
 
     params = {
-            "center_x": center_x,
-            "center_y": center_y,
             "gradient_x": gradient_x,
             "gradient_y": gradient_y,
             "value_at_center": value_at_center

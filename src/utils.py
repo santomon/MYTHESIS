@@ -3,7 +3,7 @@ import nibabel as nib
 
 
 def generate_gradient_map(
-    shape: tuple,
+    shape: tuple[float, float],
     center_x: tuple[float, float],
     center_y: tuple[float, float],
     gradient_x: tuple[float, float],
