@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import nibabel as nib
 import numpy as np
 from sklearn.linear_model import LinearRegression
-from experiments.utils import generate_gradient_map
+from utils import generate_gradient_map
 
 IMAGE_PATH = "./data/proton_density_b1s_1.nii.gz" 
 MASK_PATH = "./data/proton_density_b1s_1_mask.nii.gz" 
@@ -80,7 +80,7 @@ if image.ndim == 2:
             "value_at_center": value_at_center
             }
 
-    with open("./data/params.json", "w") as f:
+    with open("./data/linear_params.json", "w") as f:
         json.dump(params, f)
     
     # Calculate R² score

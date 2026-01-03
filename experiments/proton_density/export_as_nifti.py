@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from matplotlib.widgets import PolygonSelector, Button
 from matplotlib.path import Path
 import pydicom
-from experiments.env import env
+from env import env
 
 
 def dicom_to_nifti(dicom_path: str, output_path: str):
