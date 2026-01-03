@@ -5,34 +5,17 @@ import nibabel as nib
 import numpy as np
 from sklearn.linear_model import LinearRegression
 from utils import generate_gradient_map
+from env import env
+from utils import load_nifti_as_2d
 
-IMAGE_PATH = "./data/proton_density_b1s_1.nii.gz" 
-MASK_PATH = "./data/proton_density_b1s_1_mask.nii.gz" 
-
+IMAGE_PATH = env.proton_density_nifti_path
+MASK_PATH = env.proton_density_mask_nifti_path
 
 # Load NIfTI files
 print("Loading image and mask...")
-img_nii = nib.load(IMAGE_PATH)
-mask_nii = nib.load(MASK_PATH)
 
-image = img_nii.get_fdata()
-mask = mask_nii.get_fdata()
-
-print(f"Image shape: {image.shape}")
-print(f"Mask shape: {mask.shape}")
-
-# Handle 3D images by taking a slice or working in 2D
-if image.ndim == 3 and image.shape[2] > 1:
-    print(f"3D image detected with {image.shape[2]} slices")
-    # Uncomment to select a specific slice:
-    # slice_idx = image.shape[2] // 2
-    # image = image[:, :, slice_idx]
-    # mask = mask[:, :, slice_idx]
-if image.ndim == 3 and image.shape[2] == 1:
-    image = image[:, :, 0]
-    mask = mask[:, :, 0]
-    print("3D of size 1... treating as 2D")
-
+image = load_nifti_as_2d(IMAGE_PATH)
+mask = load_nifti_as_2d(MASK_PATH)
 
 mask_bool = mask.astype(bool)
 
