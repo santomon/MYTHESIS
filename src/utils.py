@@ -9,7 +9,7 @@ def generate_gradient_map(
     gradient_x: tuple[float, float],
     gradient_y: tuple[float, float],
     value_at_center: float,
-):
+) -> np.ndarray:
     """Generate a gradient map for any image shape and center location."""
     h, w = shape
     y, x = np.meshgrid(np.arange(h), np.arange(w), indexing="ij")
@@ -23,7 +23,7 @@ def generate_gradient_map(
 
 
 
-def load_nifti_as_2d(pth: str):
+def load_nifti_as_2d(pth: str) -> np.ndarray:
     data = nib.load(pth)
     fdata = data.get_fdata()
     if fdata.ndim == 3 and fdata.shape[2] > 1:
