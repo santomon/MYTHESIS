@@ -2,12 +2,10 @@ import json
 from copy import deepcopy
 
 import matplotlib.pyplot as plt
-import nibabel as nib
 import numpy as np
-from sklearn.linear_model import LinearRegression
-from utils import generate_gradient_map
+
 from env import env
-from utils import load_nifti_as_2d, generate_gradient_map
+from utils import generate_gradient_map, load_nifti_as_2d
 
 IMAGE_PATH = env.perfusion_test_nifti_path
 MASK_PATH = env.perfusion_test_mask_nifti_path
@@ -31,16 +29,18 @@ center_y = np.mean(mask_y)
 shape = bin_mask.shape
 
 
-gradient_image = generate_gradient_map(shape, center_x=center_x, center_y=center_y, **params)
+gradient_image = generate_gradient_map(
+    shape, center_x=center_x, center_y=center_y, **params
+)
 
 gradient_image_non_zero_mask = gradient_image != 0
 
 image = image.astype(float)
 normalized_image = deepcopy(image)
-normalized_image[gradient_image_non_zero_mask] = image[gradient_image_non_zero_mask] / gradient_image[gradient_image_non_zero_mask]
+normalized_image[gradient_image_non_zero_mask] = (
+    image[gradient_image_non_zero_mask] / gradient_image[gradient_image_non_zero_mask]
+)
 normalized_image[mask == 0] = 0
-
-
 
 
 print(normalized_image)
