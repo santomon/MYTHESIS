@@ -7,7 +7,7 @@ import pydicom
 from experiments.env import env
 
 
-def dicom_to_nifti(dicom_path, output_path):
+def dicom_to_nifti(dicom_path: str, output_path: str):
     """Convert DICOM to NIfTI format for ITK-SNAP"""
     
     # Load DICOM
