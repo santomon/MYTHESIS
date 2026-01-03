@@ -1,22 +1,10 @@
-import numpy as np
-import nibabel as nib
+import json
+
 import matplotlib.pyplot as plt
+import nibabel as nib
+import numpy as np
 from sklearn.linear_model import LinearRegression
-
-
-# Function to generate gradient map given center and gradient
-def generate_gradient_map(shape, center_x, center_y, gradient_x, gradient_y, value_at_center):
-    """Generate a gradient map for any image shape and center location."""
-    h, w = shape
-    y, x = np.meshgrid(np.arange(h), np.arange(w), indexing='ij')
-    
-    # Calculate intensity based on distance from center
-    dx = x - center_x
-    dy = y - center_y
-    gradient_map = value_at_center + gradient_x * dx + gradient_y * dy
-    
-    return gradient_map
-
+from experiments.utils import generate_gradient_map
 
 IMAGE_PATH = "./data/proton_density_b1s_1.nii.gz" 
 MASK_PATH = "./data/proton_density_b1s_1_mask.nii.gz" 
@@ -82,6 +70,18 @@ if image.ndim == 2:
     print(f"Gradient vector: ({gradient_x:.6f}, {gradient_y:.6f})")
     print(f"Gradient magnitude: {np.sqrt(gradient_x**2 + gradient_y**2):.6f}")
     print(f"Gradient direction (degrees): {np.degrees(np.arctan2(gradient_y, gradient_x)):.2f}")
+
+
+    params = {
+            "center_x": center_x,
+            "center_y": center_y,
+            "gradient_x": gradient_x,
+            "gradient_y": gradient_y,
+            "value_at_center": value_at_center
+            }
+
+    with open("./data/params.json", "w") as f:
+        json.dump(params, f)
     
     # Calculate R² score
     r2 = model.score(X, intensities)
