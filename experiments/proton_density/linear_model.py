@@ -130,8 +130,8 @@ if image.ndim == 2:
     plt.axis('off')
     
     plt.tight_layout()
-    plt.savefig('gradient_map.png', dpi=150, bbox_inches='tight')
-    print("\nPlot saved as 'gradient_map.png'")
+    plt.savefig('out/gradient_map.png', dpi=150, bbox_inches='tight')
+    print("\nPlot saved as 'out/gradient_map.png'")
     plt.show()
     
     # Save parameters for reuse
