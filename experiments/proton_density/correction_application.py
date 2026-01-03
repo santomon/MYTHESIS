@@ -37,8 +37,7 @@ gradient_image_non_zero_mask = gradient_image != 0
 
 image = image.astype(float)
 normalized_image = deepcopy(image)
-# normalized_image[gradient_image_non_zero_mask] = image[gradient_image_non_zero_mask] / gradient_image[gradient_image_non_zero_mask]
-normalized_image = image / gradient_image
+normalized_image[gradient_image_non_zero_mask] = image[gradient_image_non_zero_mask] / gradient_image[gradient_image_non_zero_mask]
 normalized_image[mask == 0] = 0
 
 
