@@ -4,9 +4,8 @@ import matplotlib.pyplot as plt
 from matplotlib.widgets import PolygonSelector, Button
 from matplotlib.path import Path
 import pydicom
+from experiments.env import env
 
-IMAGE_PATH = r"./data/T1_CMR1001.5 T1_CMR1001.5/Anonymous Study/MR Dynamic Stress VP 120dyn SSFP_SAX_b1s/MR000001.dcm"  
-OUTPUT_PATH = "./data/proton_density_b1s_1.nii.gz" 
 
 def dicom_to_nifti(dicom_path, output_path):
     """Convert DICOM to NIfTI format for ITK-SNAP"""
@@ -43,5 +42,5 @@ def dicom_to_nifti(dicom_path, output_path):
     print(f"  Data type: {image_data.dtype}")
 
 if __name__ == "__main__":
-    dicom_to_nifti(IMAGE_PATH, OUTPUT_PATH)
+    dicom_to_nifti(env.proton_density_dicom_path, env.proton_density_nifti_path)
     print("\nYou can now load this file in ITK-SNAP!")
