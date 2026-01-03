@@ -21,3 +21,9 @@ dependencies = [
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.ruff]
+include = ["pyproject.toml", "src/**/*.py", "experiments/**/*.py"]
+
+[tool.basedpyright]
+include = ["src", "experiments"]
